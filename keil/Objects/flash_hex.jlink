@@ -1,0 +1,10 @@
+device MSPM0G3507
+si SWD
+speed 500
+connect
+erase
+loadfile empty_LP_MSPM0G3507_nortos_keil.hex
+verifyfile empty_LP_MSPM0G3507_nortos_keil.hex
+r
+g
+q

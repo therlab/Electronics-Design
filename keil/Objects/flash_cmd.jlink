@@ -1,0 +1,10 @@
+device MSPM0G3507
+si SWD
+speed 100
+connect
+erase
+loadbin empty_LP_MSPM0G3507_nortos_keil.bin, 0x0
+verifybin empty_LP_MSPM0G3507_nortos_keil.bin, 0x0
+r
+g
+q
