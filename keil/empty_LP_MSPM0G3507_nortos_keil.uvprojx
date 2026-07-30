@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>__MSPM0G3507__</Define>
               <Undefine></Undefine>
-              <IncludePath>../;C:\ti\mspm0_sdk_2_11_00_07\source\third_party\CMSIS\Core\Include;C:\ti\mspm0_sdk_2_11_00_07\source;..\myused;..\BSP\JY61P_IIC;..\BSP\OLED_NEW;..\BSP\MOTOR;..\BSP\PID;..\BSP\grayscale;..\BSP\ENCODER;..\BSP\ZIGBEE;..\BSP\CONTROL;..\myused</IncludePath>
+              <IncludePath>../;C:\ti\mspm0_sdk_2_11_00_07\source\third_party\CMSIS\Core\Include;C:\ti\mspm0_sdk_2_11_00_07\source;..\myused;..\BSP\JY61P_IIC;..\BSP\OLED_NEW;..\BSP\MOTOR;..\BSP\PID;..\BSP\grayscale;..\BSP\ENCODER;..\BSP\ZIGBEE;..\BSP\CONTROL;..\BSP\FLASH;..\myused</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -385,11 +385,6 @@
           <GroupName>Source</GroupName>
           <Files>
             <File>
-              <FileName>empty.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../empty.c</FilePath>
-            </File>
-            <File>
               <FileName>empty.syscfg</FileName>
               <FileType>5</FileType>
               <FilePath>../empty.syscfg</FilePath>
@@ -413,6 +408,11 @@
               <FileName>config.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\config.h</FilePath>
+            </File>
+            <File>
+              <FileName>empty.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\empty.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -538,6 +538,11 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\BSP\grayscale\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>w25q64.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\FLASH\w25q64.c</FilePath>
             </File>
             <File>
               <FileName>delay.h</FileName>

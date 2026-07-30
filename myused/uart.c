@@ -15,12 +15,17 @@
 
 #include "uart.h"
 
-volatile unsigned char uart_data = 0;
+/* UART0 RX 环形缓冲区 */
+volatile uint8_t  uart_rx_buf[UART_RX_BUF_SIZE] = {0};
+volatile uint16_t uart_rx_head = 0;
+volatile uint16_t uart_rx_tail = 0;
 
 void uart0_init(void)
 {
     NVIC_ClearPendingIRQ(UART_0_INST_INT_IRQN);
     NVIC_EnableIRQ(UART_0_INST_INT_IRQN);
+    uart_rx_head = 0;
+    uart_rx_tail = 0;
 }
 
 /* delay_us moved to BSP/grayscale/delay.c */
@@ -47,14 +52,21 @@ void uart0_send_string(char* str)
     }
 }
 
-/* UART0 RX interrupt: 存入 uart_data，不 echo (Zigbee 不需要回显) */
+/* UART0 RX interrupt: 写入环形缓冲区 */
 void UART_0_INST_IRQHandler(void)
 {
     switch (DL_UART_getPendingInterrupt(UART_0_INST)) {
-    case DL_UART_IIDX_RX:
-        uart_data = DL_UART_Main_receiveData(UART_0_INST);
+    case DL_UART_IIDX_RX: {
+        uint8_t ch = DL_UART_Main_receiveData(UART_0_INST);
+        uint16_t next = (uart_rx_head + 1) % UART_RX_BUF_SIZE;
+        if (next != uart_rx_tail) {
+            uart_rx_buf[uart_rx_head] = ch;
+            uart_rx_head = next;
+        }
+        /* else: 缓冲区满, 丢弃此字节 */
         /* 不 echo: Zigbee 模块不需要回显，echo 会造成回环干扰 */
         break;
+    }
     default:
         break;
     }

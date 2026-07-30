@@ -1,7 +1,10 @@
 Dependencies for Project 'empty_LP_MSPM0G3507_nortos_keil', Target 'empty_LP_MSPM0G3507_nortos_keil': (DO NOT MODIFY !)
 CompilerVersion: 6220000::V6.22::ARMCLANG
-F (../empty.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/empty.o -MMD)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+F (../empty.syscfg)(0x6A64CA95)()
+F (startup_mspm0g350x_uvision.s)(0x68663D52)(--target=arm-arm-none-eabi -mcpu=cortex-m0plus -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4-Wa,armasm,--pd,"__UVISION_VERSION SETA 540" -Wa,armasm,--pd,"__MSPM0G3507__ SETA 1"-o ./objects/startup_mspm0g350x_uvision.o)
+F (../ti_msp_dl_config.h)(0x6A6B1893)()
+F (../ti_msp_dl_config.c)(0x6A6B18B5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/ti_msp_dl_config.o -MMD)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -84,24 +87,103 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_vref.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
-I (..\myused\uart.h)(0x6A64CA95)
+F (..\config.h)(0x6A6AFF5D)()
+F (..\empty.c)(0x6A6B1683)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/empty.o -MMD)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\third_party\CMSIS\Core\Include\core_cm0plus.h)(0x6A5CBC16)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_adc12.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_aes.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_comp.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_crc.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_dac12.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_dma.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_flashctl.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_gpio.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_gptimer.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_i2c.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_iomux.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_mathacl.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_mcan.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_oa.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_rtc.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_spi.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_trng.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_uart.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_vref.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_wuc.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_wwdt.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_factoryregion.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_cpuss.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_debugss.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_sysctl.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\sysctl\hw_sysctl_mspm0g1x0x_g3x0x.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\driverlib.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_adc12.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_common.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_factoryregion.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_core.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_aes.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_aesadv.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_comp.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_crc.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_crcp.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_dac12.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_dma.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_flashctl.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_sysctl.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\sysctl\dl_sysctl_mspm0g1x0x_g3x0x.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_gpamp.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_gpio.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_i2c.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_i2s.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_iwdt.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_lfss.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_keystorectl.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_lcd.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_mathacl.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_mcan.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_npu.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_opa.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc_common.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc_a.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc_b.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_scratchpad.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_spgss.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_spi.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_tamperio.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timera.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timer.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timerb.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timerg.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_trng.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_uart_extend.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_uart.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_uart_main.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicomm.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommi2cc.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommi2ct.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommspi.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommuart.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_vref.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
+I (..\myused\uart.h)(0x6A64D326)
 I (..\myused\tim.h)(0x6A64CA95)
 I (..\BSP\OLED_NEW\oled_hardware_i2c.h)(0x6A64CA95)
 I (..\BSP\MOTOR\bsp_tb6612.h)(0x6A64CA95)
 I (..\BSP\PID\pid.h)(0x6A64CA95)
-I (..\config.h)(0x6A64CA95)
-I (..\BSP\ENCODER\encoder.h)(0x6A64CA95)
+I (..\config.h)(0x6A6AFF5D)
 I (..\BSP\grayscale\delay.h)(0x6A64CA95)
 I (..\BSP\grayscale\gray_serial.h)(0x6A64CA95)
-I (..\BSP\JY61P_IIC\bsp_gyro.h)(0x6A64CA95)
-I (..\BSP\ZIGBEE\bsp_zigbee.h)(0x6A64CA95)
-I (..\BSP\CONTROL\bsp_control.h)(0x6A64CA95)
-I (..\myused\usart_openmv.h)(0x6A64CA95)
-F (../empty.syscfg)(0x6A64CA95)()
-F (startup_mspm0g350x_uvision.s)(0x68663D52)(--target=arm-arm-none-eabi -mcpu=cortex-m0plus -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4-Wa,armasm,--pd,"__UVISION_VERSION SETA 540" -Wa,armasm,--pd,"__MSPM0G3507__ SETA 1"-o ./objects/startup_mspm0g350x_uvision.o)
-F (../ti_msp_dl_config.h)(0x6A64CA95)()
-F (../ti_msp_dl_config.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/ti_msp_dl_config.o -MMD)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+I (..\BSP\FLASH\w25q64.h)(0x6A6AFDC9)
+F (..\myused\uart.c)(0x6A64D32B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/uart.o -MMD)
+I (..\myused\uart.h)(0x6A64D326)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -184,96 +266,10 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_vref.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
-F (..\config.h)(0x6A64CA95)()
-F (..\myused\uart.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/uart.o -MMD)
-I (..\myused\uart.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\third_party\CMSIS\Core\Include\core_cm0plus.h)(0x6A5CBC16)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_adc12.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_aes.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_comp.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_crc.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_dac12.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_dma.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_flashctl.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_gpio.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_gptimer.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_i2c.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_iomux.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_mathacl.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_mcan.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_oa.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_rtc.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_spi.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_trng.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_uart.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_vref.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_wuc.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_wwdt.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_factoryregion.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_cpuss.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_debugss.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_sysctl.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\sysctl\hw_sysctl_mspm0g1x0x_g3x0x.h)(0x6A5CBC18)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\driverlib.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_adc12.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_common.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_factoryregion.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_core.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_aes.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_aesadv.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_comp.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_crc.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_crcp.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_dac12.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_dma.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_flashctl.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_sysctl.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\sysctl\dl_sysctl_mspm0g1x0x_g3x0x.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_gpamp.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_gpio.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_i2c.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_i2s.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_iwdt.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_lfss.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_keystorectl.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_lcd.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_mathacl.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_mcan.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_npu.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_opa.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc_common.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc_a.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc_b.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_scratchpad.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_spgss.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_spi.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_tamperio.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timera.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timer.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timerb.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timerg.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_trng.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_uart_extend.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_uart.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_uart_main.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicomm.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommi2cc.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommi2ct.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommspi.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommuart.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_vref.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
-I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
-F (..\myused\uart.h)(0x6A64CA95)()
-F (..\myused\tim.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/tim.o -MMD)
+F (..\myused\uart.h)(0x6A64D326)()
+F (..\myused\tim.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/tim.o -MMD)
 I (..\myused\tim.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -357,11 +353,11 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
 I (..\myused\..\BSP\ENCODER\encoder.h)(0x6A64CA95)
-I (..\config.h)(0x6A64CA95)
+I (..\config.h)(0x6A6AFF5D)
 F (..\myused\tim.h)(0x6A64CA95)()
-F (..\myused\fun.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/fun.o -MMD)
+F (..\myused\fun.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/fun.o -MMD)
 I (..\myused\fun.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -445,9 +441,9 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
 F (..\myused\fun.h)(0x6A64CA95)()
-F (..\myused\usart_openmv.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/usart_openmv.o -MMD)
+F (..\myused\usart_openmv.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/usart_openmv.o -MMD)
 I (..\myused\usart_openmv.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -531,9 +527,9 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
 F (..\myused\usart_openmv.h)(0x6A64CA95)()
-F (..\BSP\MOTOR\bsp_tb6612.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/bsp_tb6612.o -MMD)
+F (..\BSP\MOTOR\bsp_tb6612.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/bsp_tb6612.o -MMD)
 I (..\BSP\MOTOR\bsp_tb6612.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -617,9 +613,9 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
 F (..\BSP\MOTOR\bsp_tb6612.h)(0x6A64CA95)()
-F (..\BSP\JY61P_IIC\bsp_gyro.c)(0x6A64D015)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/bsp_gyro.o -MMD)
+F (..\BSP\JY61P_IIC\bsp_gyro.c)(0x6A64D015)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/bsp_gyro.o -MMD)
 I (..\BSP\JY61P_IIC\bsp_gyro.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -702,11 +698,11 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_vref.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
-I (..\myused\uart.h)(0x6A64CA95)
+I (..\myused\uart.h)(0x6A64D326)
 F (..\BSP\JY61P_IIC\bsp_gyro.h)(0x6A64CA95)()
-F (..\BSP\PID\pid.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/pid.o -MMD)
+F (..\BSP\PID\pid.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/pid.o -MMD)
 I (..\BSP\PID\pid.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -789,12 +785,12 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_vref.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
-I (..\config.h)(0x6A64CA95)
+I (..\config.h)(0x6A6AFF5D)
 I (..\BSP\JY61P_IIC\bsp_gyro.h)(0x6A64CA95)
 F (..\BSP\PID\pid.h)(0x6A64CA95)()
-F (..\BSP\OLED_NEW\oled_hardware_i2c.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/oled_hardware_i2c.o -MMD)
+F (..\BSP\OLED_NEW\oled_hardware_i2c.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/oled_hardware_i2c.o -MMD)
 I (..\BSP\OLED_NEW\oled_hardware_i2c.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -880,9 +876,9 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
 I (..\BSP\OLED_NEW\oledfont.h)(0x6A64CA95)
 F (..\BSP\OLED_NEW\oled_hardware_i2c.h)(0x6A64CA95)()
 F (..\BSP\OLED_NEW\oledfont.h)(0x6A64CA95)()
-F (..\BSP\ZIGBEE\bsp_zigbee.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/bsp_zigbee.o -MMD)
+F (..\BSP\ZIGBEE\bsp_zigbee.c)(0x6A64D35C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/bsp_zigbee.o -MMD)
 I (..\BSP\ZIGBEE\bsp_zigbee.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -965,11 +961,11 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_vref.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
-I (..\myused\uart.h)(0x6A64CA95)
+I (..\myused\uart.h)(0x6A64D326)
 F (..\BSP\ZIGBEE\bsp_zigbee.h)(0x6A64CA95)()
-F (..\BSP\CONTROL\bsp_control.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/bsp_control.o -MMD)
+F (..\BSP\CONTROL\bsp_control.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/bsp_control.o -MMD)
 I (..\BSP\CONTROL\bsp_control.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -1053,16 +1049,16 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
 I (..\BSP\PID\pid.h)(0x6A64CA95)
-I (..\config.h)(0x6A64CA95)
+I (..\config.h)(0x6A6AFF5D)
 I (..\BSP\MOTOR\bsp_tb6612.h)(0x6A64CA95)
 I (..\BSP\ENCODER\encoder.h)(0x6A64CA95)
 I (..\BSP\JY61P_IIC\bsp_gyro.h)(0x6A64CA95)
-I (..\myused\uart.h)(0x6A64CA95)
+I (..\myused\uart.h)(0x6A64D326)
 I (..\BSP\grayscale\delay.h)(0x6A64CA95)
 F (..\BSP\CONTROL\bsp_control.h)(0x6A64CA95)()
-F (..\BSP\grayscale\delay.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/delay.o -MMD)
+F (..\BSP\grayscale\delay.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/delay.o -MMD)
 I (..\BSP\grayscale\delay.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -1146,10 +1142,9 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
 I (..\BSP\grayscale\gray_serial.h)(0x6A64CA95)
-F (..\BSP\grayscale\delay.h)(0x6A64CA95)()
-F (..\BSP\ENCODER\encoder.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/encoder.o -MMD)
-I (..\BSP\ENCODER\encoder.h)(0x6A64CA95)
-I (..\ti_msp_dl_config.h)(0x6A64CA95)
+F (..\BSP\FLASH\w25q64.c)(0x6A6AFE04)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/w25q64.o -MMD)
+I (..\BSP\FLASH\w25q64.h)(0x6A6AFDC9)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
@@ -1232,5 +1227,93 @@ I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_vref.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
 I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
-I (..\config.h)(0x6A64CA95)
+I (..\myused\uart.h)(0x6A64D326)
+I (..\BSP\grayscale\delay.h)(0x6A64CA95)
+F (..\BSP\grayscale\delay.h)(0x6A64CA95)()
+F (..\BSP\ENCODER\encoder.c)(0x6A64CA95)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O2 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../ -I C:/ti/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include -I C:/ti/mspm0_sdk_2_11_00_07/source -I ../myused -I ../BSP/JY61P_IIC -I ../BSP/OLED_NEW -I ../BSP/MOTOR -I ../BSP/PID -I ../BSP/grayscale -I ../BSP/ENCODER -I ../BSP/ZIGBEE -I ../BSP/CONTROL -I ../BSP/FLASH -I ../myused-D__UVISION_VERSION="540" -D__MSPM0G3507__ -D__MSPM0G3507__-o ./objects/encoder.o -MMD)
+I (..\BSP\ENCODER\encoder.h)(0x6A64CA95)
+I (..\ti_msp_dl_config.h)(0x6A6B1893)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\third_party\CMSIS\Core\Include\core_cm0plus.h)(0x6A5CBC16)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_adc12.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_aes.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_comp.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_crc.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_dac12.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_dma.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_flashctl.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_gpio.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_gptimer.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_i2c.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_iomux.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_mathacl.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_mcan.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_oa.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_rtc.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_spi.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_trng.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_uart.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_vref.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_wuc.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\hw_wwdt.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_factoryregion.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_cpuss.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_debugss.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\hw_sysctl.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\peripherals\m0p\sysctl\hw_sysctl_mspm0g1x0x_g3x0x.h)(0x6A5CBC18)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\driverlib.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_adc12.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_common.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_factoryregion.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_core.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_aes.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_aesadv.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_comp.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_crc.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_crcp.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_dac12.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_dma.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_flashctl.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_sysctl.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\sysctl\dl_sysctl_mspm0g1x0x_g3x0x.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_gpamp.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_gpio.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_i2c.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_i2s.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_iwdt.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_lfss.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_keystorectl.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_lcd.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_mathacl.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_mcan.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_npu.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_opa.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc_common.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc_a.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_rtc_b.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_scratchpad.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_spgss.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_spi.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_tamperio.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timera.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timer.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timerb.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_timerg.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_trng.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_uart_extend.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_uart.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_uart_main.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicomm.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommi2cc.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommi2ct.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommspi.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_unicommuart.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_vref.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\dl_wwdt.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h)(0x6A5CBC19)
+I (C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h)(0x6A5CBC19)
+I (..\config.h)(0x6A6AFF5D)
 F (..\BSP\ENCODER\encoder.h)(0x6A64CA95)()

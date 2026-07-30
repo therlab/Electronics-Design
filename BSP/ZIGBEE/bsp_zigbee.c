@@ -7,9 +7,9 @@
  *   - 接收: 主循环调用 zigbee_poll() 将 uart.c 收到的字节搬运到环形缓冲区
  *   - 上层应用从环形缓冲区读取，防止中断上下文中的数据丢失
  *
- * 环形缓冲区 (ring buffer):
- *   写入 (zigbee_poll): 中断→uart_data→poll 检测变化→写入 ring_buf
- *   读取 (zigbee_read):  应用层从 ring_buf 取出
+ * 两层环形缓冲区:
+ *   第1层 (uart.c):      ISR → uart_rx_buf[64]  (硬件到内存)
+ *   第2层 (bsp_zigbee.c): poll → rx_ring[64]     (内存到应用)
  *   head = 写指针, tail = 读指针, 满时丢弃最旧的数据
  */
 
@@ -33,11 +33,6 @@ static uint32_t tx_total = 0;   /* 累计发送字节数 */
 static uint32_t rx_total = 0;   /* 累计接收字节数 */
 
 /* ================================================================
- * 上次 uart_data 的快照，用于检测新数据
- * ================================================================ */
-static uint8_t last_uart_data = 0;
-
-/* ================================================================
  * zigbee_init
  * ================================================================ */
 void zigbee_init(void)
@@ -52,7 +47,6 @@ void zigbee_init(void)
     rx_tail = 0;
     tx_total = 0;
     rx_total = 0;
-    last_uart_data = 0;
 }
 
 /* ================================================================
@@ -101,22 +95,16 @@ void zigbee_printf(const char *fmt, ...)
 
 /* ================================================================
  * zigbee_poll  (每个主循环调用一次)
+ *
+ * 将 UART0 环形缓冲区中的所有字节搬运到 Zigbee 环形缓冲区。
  * ================================================================ */
 void zigbee_poll(void)
 {
-    /*
-     * uart_data 是 UART0 RX 中断中更新的全局变量 (volatile)
-     * 如果它的值和上次不同，说明收到了新字节
-     * 注意: 如果连续收到相同字节，只会被计为一次变化
-     *       这是有意为之的简化设计 —— 对 Zigbee 模块来说，
-     *       连续两个相同字节的概率很低，即使丢失也不影响协议解析
-     */
-    uint8_t ch = uart_data;  /* 读一次 volatile，避免被中断中途改掉 */
+    while (uart_rx_tail != uart_rx_head) {
+        uint8_t ch = uart_rx_buf[uart_rx_tail];
+        uart_rx_tail = (uart_rx_tail + 1) % UART_RX_BUF_SIZE;
 
-    if (ch != last_uart_data) {
-        last_uart_data = ch;
-
-        /* 写入环形缓冲区 */
+        /* 写入 Zigbee 环形缓冲区 */
         uint16_t next_head = (rx_head + 1) % ZIGBEE_RX_BUF_SIZE;
         if (next_head != rx_tail) {
             /* 缓冲区未满，正常写入 */

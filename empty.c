@@ -1,39 +1,8 @@
 /**
  * @file    empty.c
- * @brief   Amy 64pin 4轮小车 — 顶层调度
- *
- * ================================================================
- * 运行流程:
- * ================================================================
- *   上电 → 4秒倒计时 →
- *
- *   STATE_GRAY (灰度巡线) → 走够 GRAY_DIST_MM → STATE_GYRO
- *   STATE_GYRO (陀螺仪直走) → 色标触发 → 倒车转弯 → STATE_GRAY
- *   ↑________________________________________________________↓
- *
- * ================================================================
- * 运动控制: BSP/CONTROL/bsp_control.c  (四个核心函数)
- * ================================================================
- *   control_gray_follow()     — 灰度 PID → 左右 PWM
- *   control_gyro_straight()   — 陀螺仪航向保持 → 左右 PWM
- *   control_gyro_turn()       — 陀螺仪两段式转弯 (阻塞)
- *   control_color_sequence()  — 色标序列: 停车→倒车→停车→转弯 (阻塞)
- *
- * ================================================================
- * 并发:
- * ================================================================
- *   Zigbee (UART0 9600): 每1秒心跳, 主循环轮询接收
- *   MaixCAM2 (UART2 115200): 中断接收钢珠帧 → g_ball_new
- *   OLED: 4行 — 状态/Zigbee/钢珠/灰度+色标
- *
- * ================================================================
- * 硬件速查:
- * ================================================================
- *   电机: F_L(PA15) F_R(PB14) B_L(PB9) B_R(PA23)
- *   灰度: CLK=PB7 DAT=PB8     色标: L=PA8 R=PA9
- *   陀螺仪: I2C PA28/PA31      编码器: PB24 PA25 PB25 PA26
- *   Zigbee: UART0 PA10(TX) PA11(RX) 9600
- *   MaixCAM2: UART2 PA21(TX) PA24(RX) 115200
+ * @brief   灰度循迹 + 色标停车 + 6键调参 (加权平均法)
+ *          参数在 config.h 里改, 改完 Rebuild 生效
+ *          上电 STOP 状态, KEY4 启停, KEY5/6 辅助调参
  */
 
 #include "ti_msp_dl_config.h"
@@ -43,195 +12,314 @@
 #include "oled_hardware_i2c.h"
 #include "bsp_tb6612.h"
 #include "pid.h"
-#include "encoder.h"
 #include "delay.h"
 #include "gray_serial.h"
-#include "bsp_gyro.h"
-#include "bsp_zigbee.h"
-#include "bsp_control.h"
-#include "usart_openmv.h"
 #include "config.h"
+#include "w25q64.h"
 
-/* ================================================================
- * 外部变量
- * ================================================================ */
 extern volatile unsigned long tick_ms;
 
-/* ================================================================
- * 模块变量
- * ================================================================ */
-uint8_t g_oled_text[32];                     /* OLED 显示缓冲 */
+/* ══════ 按键 (PB17/18/19 + PB20/21/22, 内部上拉, 按下=0) ══════ */
+static void keys_init(void) {
+    DL_GPIO_initDigitalInputFeatures(GPIO_KEY_KEY1_IOMUX,
+        DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_UP,
+        DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
+    DL_GPIO_initDigitalInputFeatures(GPIO_KEY_KEY2_IOMUX,
+        DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_UP,
+        DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
+    DL_GPIO_initDigitalInputFeatures(GPIO_KEY_KEY3_IOMUX,
+        DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_UP,
+        DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
+    DL_GPIO_initDigitalInputFeatures(GPIO_KEY_KEY4_IOMUX,
+        DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_UP,
+        DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
+    DL_GPIO_initDigitalInputFeatures(GPIO_KEY_KEY5_IOMUX,
+        DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_UP,
+        DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
+    DL_GPIO_initDigitalInputFeatures(GPIO_KEY_KEY6_IOMUX,
+        DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_UP,
+        DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
+}
 
-static uint32_t disp_cnt        = 0;         /* OLED 刷新分频 */
-static uint8_t  gyro_cnt        = 0;         /* 陀螺仪读取分频 */
-static float    cur_yaw         = 0;         /* 当前航向 */
-static float    gyro_target     = 0;         /* 直走目标航向 */
-static uint32_t last_zb_tick    = 0;         /* Zigbee 上次发送时间 */
+static uint8_t key_read(GPIO_Regs *port, uint32_t pin) {
+    return (DL_GPIO_readPins(port, pin) == 0) ? 1 : 0;
+}
 
-/* ================================================================
- * 状态机
- * ================================================================ */
-enum { STATE_GRAY, STATE_GYRO } state;
+static uint8_t key_debounced(GPIO_Regs *port, uint32_t pin) {
+    uint8_t a = key_read(port, pin);
+    delay_ms(10);
+    uint8_t b = key_read(port, pin);
+    return (a == b) ? a : 0;
+}
 
-/* ================================================================
- * main
- * ================================================================ */
+/* ══════ 参数名列表 ══════ */
+static const char *pname[] = {"KP","KD","KI","SPD"};
+static uint8_t pidx = 0;
+
+/* ══════ W25Q64 参数存储 ══════ */
+#define W25_MAGIC  0xBEEFCAFE
+#define W25_ADDR   0x000000
+
+typedef struct {
+    float kp, kd, ki;
+    int   spd;
+    uint32_t magic;
+} w25_params_t;
+
+static float g_kp = GRAY_KP;
+static float g_kd = GRAY_KD;
+static float g_ki = GRAY_KI;
+static int   g_spd = BASE_SPEED;
+
+static void w25_params_load(void) {
+    w25_params_t p;
+    w25q64_read(W25_ADDR, (uint8_t *)&p, sizeof(p));
+    if (p.magic == W25_MAGIC) {
+        g_kp = p.kp; g_kd = p.kd;
+        g_ki = p.ki; g_spd = p.spd;
+    }
+}
+
+static void w25_params_save(void) {
+    w25_params_t p = {g_kp, g_kd, g_ki, g_spd, W25_MAGIC};
+    w25q64_erase_sector(W25_ADDR);
+    w25q64_write(W25_ADDR, (uint8_t *)&p, sizeof(p));
+}
+
+/* ══════ 运行时 PID (使用W25Q64加载的参数) ══════ */
+static float g_pid_last = 0;
+static float g_pid_int  = 0;
+
+static float run_pid(float error)
+{
+    g_pid_int += error;
+    if (g_pid_int > GRAY_INT_MAX)  g_pid_int =  GRAY_INT_MAX;
+    if (g_pid_int < -GRAY_INT_MAX) g_pid_int = -GRAY_INT_MAX;
+    float deriv = error - g_pid_last;
+    g_pid_last = error;
+    return g_kp * error + g_ki * g_pid_int + g_kd * deriv;
+}
+
+/* ══════ 色标 (右边: PA9) ══════ */
+static uint8_t color_right_read(void)
+{
+    return (DL_GPIO_readPins(GPIO_Color_PORT, GPIO_Color_RIGHT_PIN) != 0) ? 1 : 0;
+}
+
 int main(void)
 {
-    /* ─── 初始化 ─── */
     SYSCFG_DL_init();
-    uart0_init();
-    TIMER_0_init();
-    OLED_Init();   OLED_Clear();
-    delay_ms(100);
 
-    encoder_init();
-    uart_openmv_init();
-    zigbee_init();
+    w25q64_init();
+    w25_params_load();
+    keys_init();
 
-    /* ─── 4 秒倒计时 ─── */
-    {
-        uint32_t t0 = tick_ms;
-        while (tick_ms - t0 < 4000) {
-            sprintf((char *)g_oled_text, "Start in %u s",
-                (unsigned int)(4 - (tick_ms - t0) / 1000));
-            OLED_ShowString(0, 0, g_oled_text, 8);
-            encoder_poll();
-            zigbee_poll();
-            delay_ms(100);
-        }
-    }
+    OLED_Init();
     OLED_Clear();
 
-    /* ─── 初始状态 ─── */
-    state = STATE_GRAY;
-    encoder_reset_distance();
-    get_jy61p_data();
-    gyro_target = YawZ;
-
-    /* ════════════════════════════════════════════════════════════
-     * 主循环
-     * ════════════════════════════════════════════════════════════ */
-    while (1) {
-
-        /* ========================================================
-         * 1. Zigbee
-         * ======================================================== */
-        zigbee_poll();
-
-        /* 接收命令 (协议待定) */
-        while (zigbee_available() > 0) {
-            uint8_t ch = zigbee_read();
-            /* TODO: 解析命令, 例: 'S'=停车 'R'=复位 */
-            (void)ch;
+    /* 显示参数来源 */
+    {
+        w25_params_t p;
+        w25q64_read(W25_ADDR, (uint8_t *)&p, sizeof(p));
+        if (p.magic == W25_MAGIC) {
+            OLED_ShowString(0, 2, (uint8_t*)"Flash loaded", 8);
+        } else {
+            OLED_ShowString(0, 2, (uint8_t*)"Defaults", 8);
         }
+    }
+    delay_ms(500);
+    OLED_Clear();
 
-        /* 心跳: 每 1 秒发状态 */
-        if (tick_ms - last_zb_tick >= 1000) {
-            last_zb_tick = tick_ms;
-            zigbee_printf("Z%u S%d D%.1f Y%.1f\r\n",
-                (unsigned int)zigbee_get_tx_count(),
-                (int)state,
-                encoder_get_distance_mm(),
-                cur_yaw);
-        }
+    char     t[22];
+    uint32_t count = 0;
+    uint8_t  stopped = 1;          /* 上电即 STOP */
+    int16_t  left = 0, right = 0;
+    float    err = 0;
+    float    correction = 0;
 
-        /* ========================================================
-         * 2. 传感器更新
-         * ======================================================== */
-        encoder_poll();
+    /* 显示初始 STOP 画面 */
+    OLED_ShowString(0, 0, (uint8_t*)"STOP KEY4->GO", 16);
+    snprintf(t, sizeof(t), ">KP: %.1f", (double)g_kp);
+    OLED_ShowString(0, 1, (uint8_t*)t, 16);
+    snprintf(t, sizeof(t), " KD: %.1f", (double)g_kd);
+    OLED_ShowString(0, 2, (uint8_t*)t, 16);
+    snprintf(t, sizeof(t), " KI: %.2f", (double)g_ki);
+    OLED_ShowString(0, 3, (uint8_t*)t, 16);
 
-        if (++gyro_cnt >= 10) {
-            gyro_cnt = 0;
-            get_jy61p_data();
-            cur_yaw = YawZ;
+    while (1)
+    {
+        /* ══════ 按键处理 (每20次循环≈100ms) ══════ */
+        static uint8_t key_tick = 0;
+        if (++key_tick >= 20) {
+            key_tick = 0;
+
+            uint8_t k1 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY1_PIN);
+            uint8_t k2 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY2_PIN);
+            uint8_t k3 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY3_PIN);
+            uint8_t k4 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY4_PIN);
+            uint8_t k5 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY5_PIN);
+            uint8_t k6 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY6_PIN);
+
+            /* ──── KEY4 启停 toggle ──── */
+            static uint8_t k4_was = 0;
+            if (k4 && !k4_was) {
+                stopped = !stopped;
+                if (stopped) {
+                    motor_control(0, 0);
+                    g_pid_int = 0; g_pid_last = 0;
+                    OLED_Clear();
+                    OLED_ShowString(0, 0, (uint8_t*)"STOP KEY4->GO", 16);
+                } else {
+                    OLED_Clear();
+                }
+            }
+            k4_was = k4;
+
+            /* ──── 参数调节 (仅在 STOP 状态) ──── */
+            if (stopped) {
+                /* KEY1 短按: 切换参数 */
+                static uint8_t k1_was = 0;
+                if (k1 && !k1_was) { pidx = (pidx + 1) % 4; }
+                k1_was = k1;
+
+                /* KEY1 长按: 恢复默认 (~1s) */
+                static uint8_t k1_hold = 0;
+                if (k1) {
+                    if (++k1_hold > 10) {
+                        k1_hold = 0;
+                        g_kp = GRAY_KP; g_kd = GRAY_KD;
+                        g_ki = GRAY_KI; g_spd = BASE_SPEED;
+                        g_pid_int = 0; g_pid_last = 0;
+                    }
+                } else { k1_hold = 0; }
+
+                /* KEY2 长按: 保存 (~2s) */
+                static uint8_t k2_hold = 0;
+                if (k2) {
+                    if (++k2_hold > 20) {
+                        k2_hold = 0;
+                        w25_params_save();
+                        OLED_ShowString(0, 0, (uint8_t*)"SAVED!", 16);
+                        delay_ms(800);
+                        OLED_ShowString(0, 0, (uint8_t*)"STOP KEY4->GO", 16);
+                    }
+                } else { k2_hold = 0; }
+
+                /* KEY2 / KEY5 短按: 参数+ */
+                static uint8_t k2_was = 0, k5_was = 0;
+                if ((k2 && !k2_was) || (k5 && !k5_was)) {
+                    switch (pidx) {
+                    case 0: g_kp += 0.5f; if (g_kp > 20) g_kp = 20; break;
+                    case 1: g_kd += 0.5f; if (g_kd > 20) g_kd = 20; break;
+                    case 2: g_ki += 0.05f; if (g_ki > 5) g_ki = 5; break;
+                    case 3: g_spd += 25; if (g_spd > 800) g_spd = 800; break;
+                    }
+                    g_pid_int = 0; g_pid_last = 0;
+                }
+                k2_was = k2; k5_was = k5;
+
+                /* KEY3 / KEY6 短按: 参数- */
+                static uint8_t k3_was = 0, k6_was = 0;
+                if ((k3 && !k3_was) || (k6 && !k6_was)) {
+                    switch (pidx) {
+                    case 0: g_kp -= 0.5f; if (g_kp < 0.5f) g_kp = 0.5f; break;
+                    case 1: g_kd -= 0.5f; if (g_kd < 0) g_kd = 0; break;
+                    case 2: g_ki -= 0.05f; if (g_ki < 0) g_ki = 0; break;
+                    case 3: g_spd -= 25; if (g_spd < 50) g_spd = 50; break;
+                    }
+                    g_pid_int = 0; g_pid_last = 0;
+                }
+                k3_was = k3; k6_was = k6;
+            }
         }
 
         uint8_t gray = gray_serial_read();
+        uint8_t color = color_right_read();
 
-        if (g_ball_new) {
-            g_ball_new = 0;
-            /* 钢珠数据已就绪 (g_ball), 后续在此处理 */
+        /* ══════ 色标触发停车 ══════ */
+        if (!stopped && color)
+        {
+            motor_control(0, 0);
+            stopped = 1;
+            OLED_Clear();
+            OLED_ShowString(0, 0, (uint8_t*)"COLOR HIT!", 16);
+            OLED_ShowString(0, 1, (uint8_t*)"STOPPED", 16);
+            snprintf(t, sizeof(t), "KP%.1f KD%.1f KI%.2f",
+                (double)g_kp, (double)g_kd, (double)g_ki);
+            OLED_ShowString(0, 2, (uint8_t*)t, 8);
+            snprintf(t, sizeof(t), "SPD:%d", g_spd);
+            OLED_ShowString(0, 3, (uint8_t*)t, 8);
         }
 
-        /* ========================================================
-         * 3. 状态机 — 运动控制 (委托给 bsp_control)
-         * ======================================================== */
-        int16_t left = 0, right = 0;
+        /* ══════ 循迹 (RUN 模式) ══════ */
+        if (!stopped)
+        {
+            err = compute_weighted_error_digital(gray);
+            correction = run_pid(err);
 
-        switch (state) {
+            left  = (int16_t)(g_spd - correction);
+            right = (int16_t)(g_spd + correction);
 
-        case STATE_GRAY:
-            /* 灰度 PID 巡线 */
-            control_gray_follow(gray, &left, &right);
+            if (left  > 1000) left  = 1000;
+            if (left  < -1000) left = -1000;
+            if (right > 1000) right = 1000;
+            if (right < -1000) right = -1000;
 
-            /* 走够距离 → 切陀螺仪直走 */
-            if (encoder_get_distance_mm() > (float)GRAY_DIST_MM) {
-                state = STATE_GYRO;
-                pid_reset_all();
-                get_jy61p_data();
-                gyro_target = YawZ;
-            }
-            break;
-
-        case STATE_GYRO:
-            /* 陀螺仪航向保持直走 */
-            control_gyro_straight(cur_yaw, gyro_target, &left, &right);
-
-            /* 色标检测 → 倒车转弯序列 → 回灰度巡线 */
-            if (DL_GPIO_readPins(GPIO_Color_PORT, GPIO_Color_RIGHT_PIN)) {
-                control_color_sequence();    /* 阻塞: 停车→倒车→停车→右转 */
-                pid_reset_all();
-                get_jy61p_data();
-                gyro_target = YawZ;
-                state = STATE_GRAY;
-            }
-            break;
+            motor_control(left, right);
         }
 
-        /* ─── PWM 限幅 ─── */
-        if (left  >  1000) left  =  1000;
-        if (left  < -1000) left  = -1000;
-        if (right >  1000) right =  1000;
-        if (right < -1000) right = -1000;
+        count++;
 
-        motor_control(left, right);
-
-        /* ========================================================
-         * 4. OLED 显示 (分频)
-         * ======================================================== */
-        if (++disp_cnt >= OLED_DIV) {
-            disp_cnt = 0;
-
-            /* 行1: 状态 + Zigbee 计数 */
-            sprintf((char *)g_oled_text, "%s Z:%u/%u        ",
-                (state == STATE_GRAY) ? "GRAY" : "GYRO",
-                (unsigned int)zigbee_get_tx_count(),
-                (unsigned int)zigbee_get_rx_count());
-            OLED_ShowString(0, 0, g_oled_text, 8);
-
-            /* 行2: 钢珠信息 */
-            if (g_ball.num > 0) {
-                sprintf((char *)g_oled_text, "B:%d %d,%d c%d   ",
-                    g_ball.num, g_ball.cx, g_ball.cy, g_ball.conf);
+        /* ══════ OLED 刷新 ══════ */
+        if (count % OLED_DIV == 0)
+        {
+            if (!stopped) {
+                /* ──── RUN 状态 OLED ──── */
+                char tag0 = (pidx == 0) ? '>' : ' ';
+                char tag1 = (pidx == 1) ? '>' : ' ';
+                char tag2 = (pidx == 2) ? '>' : ' ';
+                char tag3 = (pidx == 3) ? '>' : ' ';
+                OLED_ShowString(0, 0, (uint8_t*)" RUN", 16);
+                snprintf(t, sizeof(t), "%cKP: %.1f", tag0, (double)g_kp);
+                OLED_ShowString(0, 1, (uint8_t*)t, 16);
+                snprintf(t, sizeof(t), "%cKD: %.1f", tag1, (double)g_kd);
+                OLED_ShowString(0, 2, (uint8_t*)t, 16);
+                /* 第3行: KI 或 SPD 轮转 */
+                if (pidx >= 2) {
+                    /* 显示 KI 和 SPD (后者在 pidx=3时高亮) */
+                    snprintf(t, sizeof(t), "%cKI:%.2f %cSPD:%d",
+                        tag2, (double)g_ki, tag3, g_spd);
+                } else {
+                    snprintf(t, sizeof(t), "%cKI: %.2f", tag2, (double)g_ki);
+                }
+                OLED_ShowString(0, 3, (uint8_t*)t, 16);
             } else {
-                sprintf((char *)g_oled_text, "B:---              ");
-            }
-            OLED_ShowString(0, 1, g_oled_text, 8);
-
-            /* 行3: 距离 + 航向 */
-            sprintf((char *)g_oled_text, "D:%.0f Y:%.1f       ",
-                encoder_get_distance_mm(), cur_yaw);
-            OLED_ShowString(0, 2, g_oled_text, 8);
-
-            /* 行4: 灰度 8 位 + 色标 */
-            {
-                uint8_t cr = DL_GPIO_readPins(GPIO_Color_PORT,
-                                              GPIO_Color_RIGHT_PIN) ? 1 : 0;
-                sprintf((char *)g_oled_text, "%d%d%d%d%d%d%d%d C:%d     ",
-                    (gray>>0)&1, (gray>>1)&1, (gray>>2)&1, (gray>>3)&1,
-                    (gray>>4)&1, (gray>>5)&1, (gray>>6)&1, (gray>>7)&1, cr);
-                OLED_ShowString(0, 3, g_oled_text, 8);
+                /* ──── STOP 状态 OLED (不覆盖 COLOR HIT 首次显示) ──── */
+                /* COLOR HIT 触发后 stopped=1, 已显示 COLOR HIT 画面 */
+                /* 后续循环才刷新为正常 STOP 调参画面 */
+                static uint8_t stop_refresh = 0;
+                if (color && stop_refresh == 0) {
+                    stop_refresh = 1;  /* 跳过首次, 保留 COLOR HIT 画面 */
+                }
+                if (++stop_refresh >= 3) { /* 延迟后开始刷新 STOP 画面 */
+                    stop_refresh = 3;
+                    char tag0 = (pidx == 0) ? '>' : ' ';
+                    char tag1 = (pidx == 1) ? '>' : ' ';
+                    char tag2 = (pidx == 2) ? '>' : ' ';
+                    char tag3 = (pidx == 3) ? '>' : ' ';
+                    OLED_ShowString(0, 0, (uint8_t*)"STOP KEY4->GO", 16);
+                    snprintf(t, sizeof(t), "%cKP: %.1f", tag0, (double)g_kp);
+                    OLED_ShowString(0, 1, (uint8_t*)t, 16);
+                    snprintf(t, sizeof(t), "%cKD: %.1f", tag1, (double)g_kd);
+                    OLED_ShowString(0, 2, (uint8_t*)t, 16);
+                    if (pidx >= 2) {
+                        snprintf(t, sizeof(t), "%cKI:%.2f %cSPD:%d",
+                            tag2, (double)g_ki, tag3, g_spd);
+                    } else {
+                        snprintf(t, sizeof(t), "%cKI: %.2f", tag2, (double)g_ki);
+                    }
+                    OLED_ShowString(0, 3, (uint8_t*)t, 16);
+                }
             }
         }
 

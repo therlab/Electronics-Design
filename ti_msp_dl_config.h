@@ -224,6 +224,15 @@ extern "C" {
 /* Defines for KEY3: GPIOB.19 with pinCMx 45 on package pin 16 */
 #define GPIO_KEY_KEY3_PIN                                       (DL_GPIO_PIN_19)
 #define GPIO_KEY_KEY3_IOMUX                                      (IOMUX_PINCM45)
+/* Defines for KEY4: GPIOB.20 with pinCMx 48 on package pin 17 */
+#define GPIO_KEY_KEY4_PIN                                       (DL_GPIO_PIN_20)
+#define GPIO_KEY_KEY4_IOMUX                                      (IOMUX_PINCM48)
+/* Defines for KEY5: GPIOB.21 with pinCMx 49 on package pin 18 */
+#define GPIO_KEY_KEY5_PIN                                       (DL_GPIO_PIN_21)
+#define GPIO_KEY_KEY5_IOMUX                                      (IOMUX_PINCM49)
+/* Defines for KEY6: GPIOB.22 with pinCMx 50 on package pin 19 */
+#define GPIO_KEY_KEY6_PIN                                       (DL_GPIO_PIN_22)
+#define GPIO_KEY_KEY6_IOMUX                                      (IOMUX_PINCM50)
 /* Port definition for Pin Group Serial_Gray */
 #define Serial_Gray_PORT                                                 (GPIOB)
 

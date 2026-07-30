@@ -1,7 +1,7 @@
 --cpu Cortex-M0+
-".\objects\empty.o"
 ".\objects\startup_mspm0g350x_uvision.o"
 ".\objects\ti_msp_dl_config.o"
+".\objects\empty.o"
 ".\objects\uart.o"
 ".\objects\tim.o"
 ".\objects\fun.o"
@@ -13,6 +13,7 @@
 ".\objects\bsp_zigbee.o"
 ".\objects\bsp_control.o"
 ".\objects\delay.o"
+".\objects\w25q64.o"
 ".\objects\encoder.o"
 --strict --scatter "./mspm0g3507.sct"
 C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\lib\keil\m0p\mspm0g1x0x_g3x0x\driverlib.a --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols

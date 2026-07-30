@@ -1,4 +1,4 @@
-./objects/empty.o: ..\empty.c ..\ti_msp_dl_config.h \
+./objects/test_ball_zigbee.o: ..\test_ball_zigbee.c ..\ti_msp_dl_config.h \
   C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\msp.h \
   C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\DeviceFamily.h \
   C:\ti\mspm0_sdk_2_11_00_07\source\ti\devices\msp\m0p\mspm0g350x.h \
@@ -82,6 +82,4 @@
   C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_interrupt.h \
   C:\ti\mspm0_sdk_2_11_00_07\source\ti\driverlib\m0p\dl_systick.h \
   ..\myused\uart.h ..\myused\tim.h ..\BSP\OLED_NEW\oled_hardware_i2c.h \
-  ..\BSP\MOTOR\bsp_tb6612.h ..\BSP\PID\pid.h ..\config.h \
-  ..\BSP\grayscale\delay.h ..\BSP\grayscale\gray_serial.h \
-  ..\BSP\FLASH\w25q64.h
+  ..\BSP\grayscale\delay.h ..\BSP\ZIGBEE\bsp_zigbee.h
