@@ -30,10 +30,10 @@ void w25q64_init(void)
     DL_GPIO_enablePower(GPIOB);
     delay_ms(1);
 
-    DL_GPIO_initDigitalOutput(IOMUX_PINCM4);   /* PA3 = CS */
-    DL_GPIO_initDigitalOutput(IOMUX_PINCM5);   /* PA4 = SCK */
-    DL_GPIO_initDigitalOutput(IOMUX_PINCM7);   /* PA6 = MOSI */
-    DL_GPIO_initDigitalInput(IOMUX_PINCM42);   /* PB1 = MISO */
+    DL_GPIO_initDigitalOutput(IOMUX_PINCM8);   /* PA3 = CS */
+    DL_GPIO_initDigitalOutput(IOMUX_PINCM9);   /* PA4 = SCK */
+    DL_GPIO_initDigitalOutput(IOMUX_PINCM11);  /* PA6 = MOSI */
+    DL_GPIO_initDigitalInput(IOMUX_PINCM13);   /* PB1 = MISO */
 
     CS_HIGH();
     SCK_LOW();

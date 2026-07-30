@@ -1,200 +1,110 @@
-TCB50 000:258.779   SEGGER J-Link V8.76 Log File
-TCB50 000:259.141   DLL Compiled: Oct  8 2025 11:30:23
-TCB50 000:259.151   Logging started @ 2026-07-30 07:37
-TCB50 000:259.163   Process: D:\keil5\UV4\UV4.exe
-TCB50 000:259.227 - 259.173ms 
-TCB50 000:259.247 JLINK_SetWarnOutHandler(...)
-TCB50 000:259.256 - 0.015ms 
-TCB50 000:259.281 JLINK_OpenEx(...)
-TCB50 000:266.808   Firmware: J-Link ARM V8 compiled Nov 28 2014 13:44:46
-TCB50 000:268.860   Firmware: J-Link ARM V8 compiled Nov 28 2014 13:44:46
-TCB50 000:273.705   Hardware: V8.00
-TCB50 000:273.736   S/N: 20100214
-TCB50 000:273.747   OEM: SEGGER
-TCB50 000:273.758   Feature(s): RDI,FlashDL,FlashBP,JFlash,GDBFull
-TCB50 000:276.122   Bootloader: (FW returned invalid version)
-TCB50 000:278.282   TELNET listener socket opened on port 19021
-TCB50 000:278.472   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
-TCB50 000:278.714   WEBSRV Webserver running on local port 19080
-TCB50 000:278.897   Looking for J-Link GUI Server exe at: D:\keil5\ARM\Segger\JLinkGUIServer.exe
-TCB50 000:279.042   Looking for J-Link GUI Server exe at: C:\Program Files\SEGGER\JLink_V876\JLinkGUIServer.exe
-TCB50 000:279.097   Forking J-Link GUI Server: C:\Program Files\SEGGER\JLink_V876\JLinkGUIServer.exe
-TCB50 000:361.170   J-Link GUI Server info: "J-Link GUI server V8.76 "
-TCB50 000:366.970 - 107.675ms returns "O.K."
-TCB50 000:367.019 JLINK_GetEmuCaps()
-TCB50 000:367.033 - 0.009ms returns 0xB9FF7BBF
-TCB50 000:367.056 JLINK_TIF_GetAvailable(...)
-TCB50 000:367.569 - 0.513ms 
-TCB50 000:367.595 JLINK_SetErrorOutHandler(...)
-TCB50 000:367.603 - 0.008ms 
-TCB50 000:367.641 JLINK_ExecCommand("ProjectFile = "C:\msys64\home\wtl\Electronics-Design\keil\JLinkSettings.ini"", ...). 
-TCB50 000:385.148   Ref file found at: D:\keil5\ARM\Segger\JLinkDevices.ref
-TCB50 000:385.725   REF file references invalid XML file: C:\Program Files\SEGGER\JLink_V876\JLinkDevices.xml
-TCB50 000:387.896 - 20.255ms returns 0x00
-TCB50 000:387.992 JLINK_ExecCommand("Device = MSPM0G3507", ...). 
-TCB50 000:388.665   Device "MSPM0G3507" selected.
-TCB50 000:389.225 - 1.214ms returns 0x00
-TCB50 000:389.256 JLINK_ExecCommand("DisableConnectionTimeout", ...). 
-TCB50 000:389.279   ERROR: Unknown command
-TCB50 000:389.292 - 0.025ms returns 0x01
-TCB50 000:389.301 JLINK_GetHardwareVersion()
-TCB50 000:389.313 - 0.008ms returns 80000
-TCB50 000:389.322 JLINK_GetDLLVersion()
-TCB50 000:389.329 - 0.007ms returns 87600
-TCB50 000:389.338 JLINK_GetOEMString(...)
-TCB50 000:389.354 JLINK_GetFirmwareString(...)
-TCB50 000:389.361 - 0.007ms 
-TCB50 000:389.371 JLINK_GetDLLVersion()
-TCB50 000:389.379 - 0.007ms returns 87600
-TCB50 000:389.387 JLINK_GetCompileDateTime()
-TCB50 000:389.398 - 0.011ms 
-TCB50 000:389.407 JLINK_GetFirmwareString(...)
-TCB50 000:389.414 - 0.007ms 
-TCB50 000:389.422 JLINK_GetHardwareVersion()
-TCB50 000:389.429 - 0.006ms returns 80000
-TCB50 000:389.437 JLINK_GetSN()
-TCB50 000:389.444 - 0.007ms returns 20100214
-TCB50 000:389.452 JLINK_GetOEMString(...)
-TCB50 000:389.465 JLINK_TIF_Select(JLINKARM_TIF_SWD)
-TCB50 000:392.167 - 2.704ms returns 0x00
-TCB50 000:392.186 JLINK_HasError()
-TCB50 000:392.208 JLINK_SetSpeed(500)
-TCB50 000:392.810 - 0.603ms 
-TCB50 000:393.422 JLINK_HasError()
-TCB50 000:393.445 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)
-TCB50 000:393.456 - 0.012ms returns JLINKARM_RESET_TYPE_NORMAL
-TCB50 000:393.468 JLINK_Reset()
-TCB50 000:394.204   InitTarget() start
-TCB50 000:394.282    J-Link Script File: Executing InitTarget()
-TCB50 000:398.104   DAP initialized successfully.
-TCB50 000:401.515   No PWR-AP detected.
-TCB50 000:401.531   InitTarget() end - Took 7.24ms
-TCB50 000:403.285   Found SW-DP with ID 0x6BA02477
-TCB50 000:413.237   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 000:423.143   DPv0 detected
-TCB50 000:423.165   CoreSight SoC-400 or earlier
-TCB50 000:423.176   Scanning AP map to find all available APs
-TCB50 000:426.642   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 000:426.679   Iterating through AP map to find AHB-AP to use
-TCB50 000:426.751   Attach to CPU failed. Executing connect under reset.
-TCB50 000:455.566   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 000:465.436   DPv0 detected
-TCB50 000:465.464   CoreSight SoC-400 or earlier
-TCB50 000:465.476   Scanning AP map to find all available APs
-TCB50 000:468.635   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 000:468.676   Iterating through AP map to find AHB-AP to use
-TCB50 000:468.704   Could not find core in Coresight setup
-TCB50 000:570.762   Connect fallback: Reset via Reset pin & Connect.
-TCB50 000:633.903   InitTarget() start
-TCB50 000:633.940    J-Link Script File: Executing InitTarget()
-TCB50 000:637.425   DAP initialized successfully.
-TCB50 000:640.694   No PWR-AP detected.
-TCB50 000:640.727   InitTarget() end - Took 6.78ms
-TCB50 000:642.346   Found SW-DP with ID 0x6BA02477
-TCB50 000:651.947   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 000:661.644   DPv0 detected
-TCB50 000:661.677   CoreSight SoC-400 or earlier
-TCB50 000:661.689   Scanning AP map to find all available APs
-TCB50 000:664.976   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 000:665.037   Iterating through AP map to find AHB-AP to use
-TCB50 000:665.052   Attach to CPU failed. Executing connect under reset.
-TCB50 000:693.786   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 000:703.333   DPv0 detected
-TCB50 000:703.354   CoreSight SoC-400 or earlier
-TCB50 000:703.366   Scanning AP map to find all available APs
-TCB50 000:706.429   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 000:706.449   Iterating through AP map to find AHB-AP to use
-TCB50 000:706.461   Could not find core in Coresight setup
-TCB50 000:807.229 - 413.758ms 
-TCB50 000:807.277 JLINK_GetId()
-TCB50 000:807.772   InitTarget() start
-TCB50 000:807.824    J-Link Script File: Executing InitTarget()
-TCB50 000:811.144   DAP initialized successfully.
-TCB50 000:814.253   No PWR-AP detected.
-TCB50 000:814.280   InitTarget() end - Took 6.45ms
-TCB50 000:815.935   Found SW-DP with ID 0x6BA02477
-TCB50 000:825.181   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 000:834.368   DPv0 detected
-TCB50 000:834.391   CoreSight SoC-400 or earlier
-TCB50 000:834.403   Scanning AP map to find all available APs
-TCB50 000:837.614   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 000:837.631   Iterating through AP map to find AHB-AP to use
-TCB50 000:837.642   Attach to CPU failed. Executing connect under reset.
-TCB50 000:866.870   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 000:876.951   DPv0 detected
-TCB50 000:876.975   CoreSight SoC-400 or earlier
-TCB50 000:876.986   Scanning AP map to find all available APs
-TCB50 000:880.886   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 000:880.908   Iterating through AP map to find AHB-AP to use
-TCB50 000:880.934   Could not find core in Coresight setup
-TCB50 000:982.271   Connect fallback: Reset via Reset pin & Connect.
-TCB50 001:045.224   InitTarget() start
-TCB50 001:045.256    J-Link Script File: Executing InitTarget()
-TCB50 001:048.410   DAP initialized successfully.
-TCB50 001:051.728   No PWR-AP detected.
-TCB50 001:051.756   InitTarget() end - Took 6.49ms
-TCB50 001:053.444   Found SW-DP with ID 0x6BA02477
-TCB50 001:063.096   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 001:072.757   DPv0 detected
-TCB50 001:072.788   CoreSight SoC-400 or earlier
-TCB50 001:072.800   Scanning AP map to find all available APs
-TCB50 001:075.902   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 001:075.933   Iterating through AP map to find AHB-AP to use
-TCB50 001:075.946   Attach to CPU failed. Executing connect under reset.
-TCB50 001:104.563   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 001:114.481   DPv0 detected
-TCB50 001:114.507   CoreSight SoC-400 or earlier
-TCB50 001:114.519   Scanning AP map to find all available APs
-TCB50 001:117.718   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 001:117.745   Iterating through AP map to find AHB-AP to use
-TCB50 001:117.756   Could not find core in Coresight setup
-TCB50 001:218.758 - 411.478ms returns 0x00000000
-TCB50 001:218.854 JLINK_GetId()
-TCB50 001:219.345   InitTarget() start
-TCB50 001:219.365    J-Link Script File: Executing InitTarget()
-TCB50 001:222.552   DAP initialized successfully.
-TCB50 001:225.711   No PWR-AP detected.
-TCB50 001:225.755   InitTarget() end - Took 6.38ms
-TCB50 001:227.399   Found SW-DP with ID 0x6BA02477
-TCB50 001:237.179   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 001:246.942   DPv0 detected
-TCB50 001:247.019   CoreSight SoC-400 or earlier
-TCB50 001:247.031   Scanning AP map to find all available APs
-TCB50 001:250.110   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 001:250.138   Iterating through AP map to find AHB-AP to use
-TCB50 001:250.150   Attach to CPU failed. Executing connect under reset.
-TCB50 001:279.573   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 001:289.457   DPv0 detected
-TCB50 001:292.742   CoreSight SoC-400 or earlier
-TCB50 001:292.774   Scanning AP map to find all available APs
-TCB50 001:296.175   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 001:296.195   Iterating through AP map to find AHB-AP to use
-TCB50 001:296.207   Could not find core in Coresight setup
-TCB50 001:396.599   Connect fallback: Reset via Reset pin & Connect.
-TCB50 001:460.291   InitTarget() start
-TCB50 001:460.332    J-Link Script File: Executing InitTarget()
-TCB50 001:463.538   DAP initialized successfully.
-TCB50 001:466.786   No PWR-AP detected.
-TCB50 001:466.815   InitTarget() end - Took 6.48ms
-TCB50 001:468.434   Found SW-DP with ID 0x6BA02477
-TCB50 001:478.127   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 001:487.964   DPv0 detected
-TCB50 001:487.985   CoreSight SoC-400 or earlier
-TCB50 001:487.997   Scanning AP map to find all available APs
-TCB50 001:491.222   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 001:491.236   Iterating through AP map to find AHB-AP to use
-TCB50 001:491.248   Attach to CPU failed. Executing connect under reset.
-TCB50 001:521.649   Old FW that does not support reading DPIDR via DAP jobs
-TCB50 001:531.777   DPv0 detected
-TCB50 001:531.794   CoreSight SoC-400 or earlier
-TCB50 001:531.805   Scanning AP map to find all available APs
-TCB50 001:535.216   AP[0]: Stopped AP scan as end of AP map has been reached
-TCB50 001:535.238   Iterating through AP map to find AHB-AP to use
-TCB50 001:535.249   Could not find core in Coresight setup
-TCB50 001:635.928 - 417.071ms returns 0x00000000
-TCB50 001:647.335 JLINK_GetFirmwareString(...)
-TCB50 001:647.383 - 0.048ms 
-TCB50 005:543.297 JLINK_Close()
-TCB50 005:557.061 - 13.763ms
-TCB50 005:557.139   
-TCB50 005:557.148   Closed
+T4484 000:162.539   SEGGER J-Link V8.76 Log File
+T4484 000:162.665   DLL Compiled: Oct  8 2025 11:30:23
+T4484 000:162.677   Logging started @ 2026-07-30 09:48
+T4484 000:162.685   Process: D:\keil5\UV4\UV4.exe
+T4484 000:162.696 - 162.692ms 
+T4484 000:162.707 JLINK_SetWarnOutHandler(...)
+T4484 000:162.714 - 0.008ms 
+T4484 000:162.723 JLINK_OpenEx(...)
+T4484 000:170.275   Firmware: J-Link ARM-OB STM32 compiled Aug 22 2012 19:52:04
+T4484 000:172.455   Firmware: J-Link ARM-OB STM32 compiled Aug 22 2012 19:52:04
+T4484 000:175.060   Hardware: V7.00
+T4484 000:175.089   S/N: 20090928
+T4484 000:175.103   OEM: SEGGER
+T4484 000:175.113   Feature(s): FlashBP, JFlash
+T4484 000:176.067   Bootloader: (FW returned invalid version)
+T4484 000:177.456   TELNET listener socket opened on port 19021
+T4484 000:177.834   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
+T4484 000:178.357   WEBSRV Webserver running on local port 19080
+T4484 000:178.628   Looking for J-Link GUI Server exe at: D:\keil5\ARM\Segger\JLinkGUIServer.exe
+T4484 000:178.885   Looking for J-Link GUI Server exe at: C:\Program Files\SEGGER\JLink_V876\JLinkGUIServer.exe
+T4484 000:178.963   Forking J-Link GUI Server: C:\Program Files\SEGGER\JLink_V876\JLinkGUIServer.exe
+T4484 000:198.481   J-Link GUI Server info: "J-Link GUI server V8.76 "
+T4484 000:199.252 - 36.520ms returns "O.K."
+T4484 000:199.314 JLINK_GetEmuCaps()
+T4484 000:199.327 - 0.010ms returns 0x88EA5833
+T4484 000:199.340 JLINK_TIF_GetAvailable(...)
+T4484 000:199.895 - 0.554ms 
+T4484 000:199.939 JLINK_SetErrorOutHandler(...)
+T4484 000:199.947 - 0.008ms 
+T4484 000:199.975 JLINK_ExecCommand("ProjectFile = "C:\msys64\home\wtl\Electronics-Design\keil\JLinkSettings.ini"", ...). 
+T4484 000:219.036   Ref file found at: D:\keil5\ARM\Segger\JLinkDevices.ref
+T4484 000:219.178   REF file references invalid XML file: C:\Program Files\SEGGER\JLink_V876\JLinkDevices.xml
+T4484 000:221.673 - 21.693ms returns 0x00
+T4484 000:221.910 JLINK_ExecCommand("Device = MSPM0G3507", ...). 
+T4484 000:223.437   Device "MSPM0G3507" selected.
+T4484 000:224.975 - 3.042ms returns 0x00
+T4484 000:225.034 JLINK_ExecCommand("DisableConnectionTimeout", ...). 
+T4484 000:225.060   ERROR: Unknown command
+T4484 000:225.085 - 0.039ms returns 0x01
+T4484 000:225.248 JLINK_GetHardwareVersion()
+T4484 000:225.310 - 0.053ms returns 70000
+T4484 000:225.332 JLINK_GetDLLVersion()
+T4484 000:225.350 - 0.018ms returns 87600
+T4484 000:225.369 JLINK_GetOEMString(...)
+T4484 000:225.390 JLINK_GetFirmwareString(...)
+T4484 000:225.407 - 0.018ms 
+T4484 000:225.453 JLINK_GetDLLVersion()
+T4484 000:225.474 - 0.020ms returns 87600
+T4484 000:225.493 JLINK_GetCompileDateTime()
+T4484 000:225.509 - 0.016ms 
+T4484 000:225.533 JLINK_GetFirmwareString(...)
+T4484 000:225.550 - 0.016ms 
+T4484 000:225.571 JLINK_GetHardwareVersion()
+T4484 000:225.588 - 0.016ms returns 70000
+T4484 000:225.607 JLINK_GetSN()
+T4484 000:225.624 - 0.016ms returns 20090928
+T4484 000:225.644 JLINK_GetOEMString(...)
+T4484 000:225.672 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T4484 000:227.388 - 1.718ms returns 0x00
+T4484 000:227.499 JLINK_HasError()
+T4484 000:227.566 JLINK_SetSpeed(500)
+T4484 000:228.175 - 0.615ms 
+T4484 000:229.313 JLINK_HasError()
+T4484 000:229.386 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)
+T4484 000:229.404 - 0.018ms returns JLINKARM_RESET_TYPE_NORMAL
+T4484 000:229.416 JLINK_Reset()
+T4484 000:230.168   InitTarget() start
+T4484 000:230.214    J-Link Script File: Executing InitTarget()
+T4484 000:231.960   Error: Failed to initialize DAP.
+T4484 000:233.505   No PWR-AP detected.
+T4484 000:233.527   InitTarget() end - Took 3.31ms
+T4484 000:343.230   Connect fallback: Reset via Reset pin & Connect.
+T4484 000:401.943   InitTarget() start
+T4484 000:401.978    J-Link Script File: Executing InitTarget()
+T4484 000:403.371   Error: Failed to initialize DAP.
+T4484 000:404.851   No PWR-AP detected.
+T4484 000:404.874   InitTarget() end - Took 2.89ms
+T4484 000:513.298 - 283.881ms 
+T4484 000:513.340 JLINK_GetId()
+T4484 000:513.760   InitTarget() start
+T4484 000:513.815    J-Link Script File: Executing InitTarget()
+T4484 000:515.286   Error: Failed to initialize DAP.
+T4484 000:516.736   No PWR-AP detected.
+T4484 000:516.755   InitTarget() end - Took 2.93ms
+T4484 000:625.749   Connect fallback: Reset via Reset pin & Connect.
+T4484 000:686.434   InitTarget() start
+T4484 000:686.483    J-Link Script File: Executing InitTarget()
+T4484 000:688.172   Error: Failed to initialize DAP.
+T4484 000:689.919   No PWR-AP detected.
+T4484 000:689.954   InitTarget() end - Took 3.46ms
+T4484 000:799.299 - 285.957ms returns 0x00000000
+T4484 000:799.368 JLINK_GetId()
+T4484 000:799.820   InitTarget() start
+T4484 000:799.842    J-Link Script File: Executing InitTarget()
+T4484 000:801.294   Error: Failed to initialize DAP.
+T4484 000:802.756   No PWR-AP detected.
+T4484 000:802.773   InitTarget() end - Took 2.92ms
+T4484 000:911.790   Connect fallback: Reset via Reset pin & Connect.
+T4484 000:973.599   InitTarget() start
+T4484 000:973.649    J-Link Script File: Executing InitTarget()
+T4484 000:975.329   Error: Failed to initialize DAP.
+T4484 000:976.745   No PWR-AP detected.
+T4484 000:976.760   InitTarget() end - Took 3.11ms
+T4484 001:085.989 - 286.616ms returns 0x00000000
+T4484 001:090.594 JLINK_GetFirmwareString(...)
+T4484 001:090.636 - 0.033ms 
+T4484 002:604.562 JLINK_Close()
+T4484 002:617.622 - 13.058ms
+T4484 002:617.747   
+T4484 002:617.777   Closed

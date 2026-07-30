@@ -100,12 +100,6 @@ static float run_pid(float error)
     return g_kp * error + g_ki * g_pid_int + g_kd * deriv;
 }
 
-/* ══════ 色标 (右边: PA9) ══════ */
-static uint8_t color_right_read(void)
-{
-    return (DL_GPIO_readPins(GPIO_Color_PORT, GPIO_Color_RIGHT_PIN) != 0) ? 1 : 0;
-}
-
 int main(void)
 {
     SYSCFG_DL_init();
@@ -138,54 +132,61 @@ int main(void)
     float    correction = 0;
 
     /* 显示初始 STOP 画面 */
-    OLED_ShowString(0, 0, (uint8_t*)"STOP KEY4->GO", 16);
-    snprintf(t, sizeof(t), ">KP: %.1f", (double)g_kp);
-    OLED_ShowString(0, 1, (uint8_t*)t, 16);
-    snprintf(t, sizeof(t), " KD: %.1f", (double)g_kd);
+    OLED_ShowString(0, 0, (uint8_t*)"STOP [4]->GO", 16);
+    snprintf(t, sizeof(t), "%cKP%.1f %cKD%.1f",
+        (pidx == 0) ? '>' : ' ', (double)g_kp,
+        (pidx == 1) ? '>' : ' ', (double)g_kd);
     OLED_ShowString(0, 2, (uint8_t*)t, 16);
-    snprintf(t, sizeof(t), " KI: %.2f", (double)g_ki);
-    OLED_ShowString(0, 3, (uint8_t*)t, 16);
+    snprintf(t, sizeof(t), "%cKI%.2f %cV%d",
+        (pidx == 2) ? '>' : ' ', (double)g_ki,
+        (pidx == 3) ? '>' : ' ', g_spd);
+    OLED_ShowString(0, 4, (uint8_t*)t, 16);
+    OLED_ShowString(0, 6, (uint8_t*)"G:........", 16);
 
     while (1)
     {
-        /* ══════ 按键处理 (每20次循环≈100ms) ══════ */
+        /* ══════ 按键处理 (每2次循环≈10ms) ══════ */
         static uint8_t key_tick = 0;
-        if (++key_tick >= 20) {
+        if (++key_tick >= 2) {
             key_tick = 0;
 
-            uint8_t k1 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY1_PIN);
-            uint8_t k2 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY2_PIN);
-            uint8_t k3 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY3_PIN);
-            uint8_t k4 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY4_PIN);
-            uint8_t k5 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY5_PIN);
-            uint8_t k6 = key_debounced(GPIO_KEY_PORT, GPIO_KEY_KEY6_PIN);
+            /* 消抖: 连续2次读到相同值才确认 */
+            static uint8_t k1_db = 0, k2_db = 0, k3_db = 0;
+            static uint8_t k4_db = 0, k5_db = 0, k6_db = 0;
+            uint8_t r1 = (DL_GPIO_readPins(GPIO_KEY_PORT, GPIO_KEY_KEY1_PIN) == 0);
+            uint8_t r2 = (DL_GPIO_readPins(GPIO_KEY_PORT, GPIO_KEY_KEY2_PIN) == 0);
+            uint8_t r3 = (DL_GPIO_readPins(GPIO_KEY_PORT, GPIO_KEY_KEY3_PIN) == 0);
+            uint8_t r4 = (DL_GPIO_readPins(GPIO_KEY_PORT, GPIO_KEY_KEY4_PIN) == 0);
+            uint8_t r5 = (DL_GPIO_readPins(GPIO_KEY_PORT, GPIO_KEY_KEY5_PIN) == 0);
+            uint8_t r6 = (DL_GPIO_readPins(GPIO_KEY_PORT, GPIO_KEY_KEY6_PIN) == 0);
+            uint8_t k1 = (r1 && k1_db) ? 1 : 0; k1_db = r1;
+            uint8_t k2 = (r2 && k2_db) ? 1 : 0; k2_db = r2;
+            uint8_t k3 = (r3 && k3_db) ? 1 : 0; k3_db = r3;
+            uint8_t k4 = (r4 && k4_db) ? 1 : 0; k4_db = r4;
+            uint8_t k5 = (r5 && k5_db) ? 1 : 0; k5_db = r5;
+            uint8_t k6 = (r6 && k6_db) ? 1 : 0; k6_db = r6;
 
-            /* ──── KEY4 启停 toggle ──── */
+            /* KEY4 启停 toggle */
             static uint8_t k4_was = 0;
             if (k4 && !k4_was) {
                 stopped = !stopped;
                 if (stopped) {
                     motor_control(0, 0);
                     g_pid_int = 0; g_pid_last = 0;
-                    OLED_Clear();
-                    OLED_ShowString(0, 0, (uint8_t*)"STOP KEY4->GO", 16);
-                } else {
-                    OLED_Clear();
                 }
+                OLED_Clear();
             }
             k4_was = k4;
 
-            /* ──── 参数调节 (仅在 STOP 状态) ──── */
+            /* 参数调节 (仅在 STOP 状态) */
             if (stopped) {
-                /* KEY1 短按: 切换参数 */
                 static uint8_t k1_was = 0;
                 if (k1 && !k1_was) { pidx = (pidx + 1) % 4; }
                 k1_was = k1;
 
-                /* KEY1 长按: 恢复默认 (~1s) */
                 static uint8_t k1_hold = 0;
                 if (k1) {
-                    if (++k1_hold > 10) {
+                    if (++k1_hold > 80) {  /* ~1s */
                         k1_hold = 0;
                         g_kp = GRAY_KP; g_kd = GRAY_KD;
                         g_ki = GRAY_KI; g_spd = BASE_SPEED;
@@ -193,19 +194,16 @@ int main(void)
                     }
                 } else { k1_hold = 0; }
 
-                /* KEY2 长按: 保存 (~2s) */
                 static uint8_t k2_hold = 0;
                 if (k2) {
-                    if (++k2_hold > 20) {
+                    if (++k2_hold > 160) {  /* ~2s */
                         k2_hold = 0;
                         w25_params_save();
                         OLED_ShowString(0, 0, (uint8_t*)"SAVED!", 16);
                         delay_ms(800);
-                        OLED_ShowString(0, 0, (uint8_t*)"STOP KEY4->GO", 16);
                     }
                 } else { k2_hold = 0; }
 
-                /* KEY2 / KEY5 短按: 参数+ */
                 static uint8_t k2_was = 0, k5_was = 0;
                 if ((k2 && !k2_was) || (k5 && !k5_was)) {
                     switch (pidx) {
@@ -218,7 +216,6 @@ int main(void)
                 }
                 k2_was = k2; k5_was = k5;
 
-                /* KEY3 / KEY6 短按: 参数- */
                 static uint8_t k3_was = 0, k6_was = 0;
                 if ((k3 && !k3_was) || (k6 && !k6_was)) {
                     switch (pidx) {
@@ -234,22 +231,6 @@ int main(void)
         }
 
         uint8_t gray = gray_serial_read();
-        uint8_t color = color_right_read();
-
-        /* ══════ 色标触发停车 ══════ */
-        if (!stopped && color)
-        {
-            motor_control(0, 0);
-            stopped = 1;
-            OLED_Clear();
-            OLED_ShowString(0, 0, (uint8_t*)"COLOR HIT!", 16);
-            OLED_ShowString(0, 1, (uint8_t*)"STOPPED", 16);
-            snprintf(t, sizeof(t), "KP%.1f KD%.1f KI%.2f",
-                (double)g_kp, (double)g_kd, (double)g_ki);
-            OLED_ShowString(0, 2, (uint8_t*)t, 8);
-            snprintf(t, sizeof(t), "SPD:%d", g_spd);
-            OLED_ShowString(0, 3, (uint8_t*)t, 8);
-        }
 
         /* ══════ 循迹 (RUN 模式) ══════ */
         if (!stopped)
@@ -273,54 +254,37 @@ int main(void)
         /* ══════ OLED 刷新 ══════ */
         if (count % OLED_DIV == 0)
         {
+            /* 灰度传感器位图 */
+            char gray_bits[9];
+            for (int i = 0; i < 8; i++)
+                gray_bits[7 - i] = (gray & (1 << i)) ? '1' : '0';
+            gray_bits[8] = '\0';
+
             if (!stopped) {
-                /* ──── RUN 状态 OLED ──── */
-                char tag0 = (pidx == 0) ? '>' : ' ';
-                char tag1 = (pidx == 1) ? '>' : ' ';
-                char tag2 = (pidx == 2) ? '>' : ' ';
-                char tag3 = (pidx == 3) ? '>' : ' ';
-                OLED_ShowString(0, 0, (uint8_t*)" RUN", 16);
-                snprintf(t, sizeof(t), "%cKP: %.1f", tag0, (double)g_kp);
-                OLED_ShowString(0, 1, (uint8_t*)t, 16);
-                snprintf(t, sizeof(t), "%cKD: %.1f", tag1, (double)g_kd);
-                OLED_ShowString(0, 2, (uint8_t*)t, 16);
-                /* 第3行: KI 或 SPD 轮转 */
-                if (pidx >= 2) {
-                    /* 显示 KI 和 SPD (后者在 pidx=3时高亮) */
-                    snprintf(t, sizeof(t), "%cKI:%.2f %cSPD:%d",
-                        tag2, (double)g_ki, tag3, g_spd);
-                } else {
-                    snprintf(t, sizeof(t), "%cKI: %.2f", tag2, (double)g_ki);
-                }
-                OLED_ShowString(0, 3, (uint8_t*)t, 16);
+                OLED_ShowString(0, 0, (uint8_t*)"RUN", 16);
             } else {
-                /* ──── STOP 状态 OLED (不覆盖 COLOR HIT 首次显示) ──── */
-                /* COLOR HIT 触发后 stopped=1, 已显示 COLOR HIT 画面 */
-                /* 后续循环才刷新为正常 STOP 调参画面 */
-                static uint8_t stop_refresh = 0;
-                if (color && stop_refresh == 0) {
-                    stop_refresh = 1;  /* 跳过首次, 保留 COLOR HIT 画面 */
-                }
-                if (++stop_refresh >= 3) { /* 延迟后开始刷新 STOP 画面 */
-                    stop_refresh = 3;
-                    char tag0 = (pidx == 0) ? '>' : ' ';
-                    char tag1 = (pidx == 1) ? '>' : ' ';
-                    char tag2 = (pidx == 2) ? '>' : ' ';
-                    char tag3 = (pidx == 3) ? '>' : ' ';
-                    OLED_ShowString(0, 0, (uint8_t*)"STOP KEY4->GO", 16);
-                    snprintf(t, sizeof(t), "%cKP: %.1f", tag0, (double)g_kp);
-                    OLED_ShowString(0, 1, (uint8_t*)t, 16);
-                    snprintf(t, sizeof(t), "%cKD: %.1f", tag1, (double)g_kd);
-                    OLED_ShowString(0, 2, (uint8_t*)t, 16);
-                    if (pidx >= 2) {
-                        snprintf(t, sizeof(t), "%cKI:%.2f %cSPD:%d",
-                            tag2, (double)g_ki, tag3, g_spd);
-                    } else {
-                        snprintf(t, sizeof(t), "%cKI: %.2f", tag2, (double)g_ki);
-                    }
-                    OLED_ShowString(0, 3, (uint8_t*)t, 16);
-                }
+                OLED_ShowString(0, 0, (uint8_t*)"STOP [4]->GO", 16);
             }
+
+            /* Line 1: KP + KD */
+            snprintf(t, sizeof(t), "%cKP%.1f %cKD%.1f",
+                (pidx == 0) ? '>' : ' ',
+                (double)g_kp,
+                (pidx == 1) ? '>' : ' ',
+                (double)g_kd);
+            OLED_ShowString(0, 2, (uint8_t*)t, 16);
+
+            /* Line 2: KI + SPD */
+            snprintf(t, sizeof(t), "%cKI%.2f %cV%d",
+                (pidx == 2) ? '>' : ' ',
+                (double)g_ki,
+                (pidx == 3) ? '>' : ' ',
+                g_spd);
+            OLED_ShowString(0, 4, (uint8_t*)t, 16);
+
+            /* Line 3: 传感器状态 */
+            snprintf(t, sizeof(t), "G:%s", gray_bits);
+            OLED_ShowString(0, 6, (uint8_t*)t, 16);
         }
 
         delay_ms(LOOP_DELAY_MS);
